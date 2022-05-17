@@ -128,7 +128,7 @@ OrderedDict([('miou', 0.8980501731845956), ('category_iou', array([0.98892947, 0
 - pre 预测图片存储的位置
 
 ```shell
-python tutorials/predict/change_detection/bit_predict.py --A ../datasets/BIT-split/test/A/ --B ../datasets/BIT-split/test/B/ --pre ../datasets/predicted/
+python tutorials/predict/change_detection/bit_predict.py --A ../datasets/BIT/test/A/ --B ../datasets/BIT/test/B/ --pre ../datasets/predicted/
 ```
 
 - 预测结果与真实值对比
@@ -139,70 +139,3 @@ python tutorials/predict/change_detection/bit_predict.py --A ../datasets/BIT-spl
 
 
 **模型导出与部署的README.md[点击此处](./tutorials/infer/README.md)**
-
-### TIPC基础链条测试
-
-该部分依赖auto_log，需要进行安装，安装方式如下：
-
-auto_log的详细介绍参考[https://github.com/LDOUBLEV/AutoLog](https://github.com/LDOUBLEV/AutoLog)。
-
-```shell
-git clone https://github.com/LDOUBLEV/AutoLog
-pip3 install -r requirements.txt
-python3 setup.py bdist_wheel
-pip3 install ./dist/auto_log-1.0.0-py3-none-any.whl
-```
-
-
-```shell
-bash ./test_tipc/prepare.sh test_tipc/configs/BIT/train_infer_python.txt 'lite_train_lite_infer'
-
-bash test_tipc/test_train_inference_python.sh test_tipc/configs/BIT/train_infer_python.txt 'lite_train_lite_infer'
-```
-
-测试结果如截图所示，也可以在`test_tipc/ouput/BIT`文件夹下查看.log文件：
-
-<img src=./docs/images/BIT/TIPC.png></img>
-
-**TIPC 完整时间戳**
-
-![图片](https://user-images.githubusercontent.com/52785738/164203882-920056dd-7d29-4e8c-b276-675d1f1a0432.png)
-![图片](https://user-images.githubusercontent.com/52785738/164203929-cbc789e0-8e29-4371-9ad4-da3ae21e1e6e.png)
-![图片](https://user-images.githubusercontent.com/52785738/164203965-4b16e274-f5a2-4a7c-bb54-d3d2fc8b1ee4.png)
-![图片](https://user-images.githubusercontent.com/52785738/164203998-485dfd46-6c79-4d6c-aca3-c0523e0ed219.png)
-![图片](https://user-images.githubusercontent.com/52785738/164204091-3daf0405-371a-4978-a1c5-4e7154ac2c3c.png)
-
-## 6.代码结构与详细说明
-
-```
-BIT-CD-Paddle
-├── deploy               # 部署相关的文档和脚本
-├── docs                 # 整个项目图片
-├── output               # 输出的VDL日志
-├── data                 # 数据预处理生成.txt代码
-├── paddlers  
-│     ├── custom_models  # 自定义网络模型代码
-│     ├── datasets       # 数据加载相关代码
-│     ├── models         # 套件网络模型代码
-│     ├── tasks          # 相关任务代码
-│     ├── tools          # 相关脚本
-│     ├── transforms     # 数据处理及增强相关代码
-│     └── utils          # 各种实用程序文件
-├── tools                # 用于处理遥感数据的脚本
-└── tutorials
-      └── train          # 模型训练
-      └── eval           # 模型评估和TIPC训练
-      └── infer          # 模型推理
-      └── predict        # 模型预测
-
-
-```
-
-## 7.模型信息
-
-| 信息 | 描述 |
-| --- | --- |
-|模型名称| BIT-CD |
-|框架版本| PaddlePaddle==2.2.2|
-|应用场景| 遥感图像变化检测|
-|在线体验|[【第六期论文复现赛-变化检测】BIT](https://aistudio.baidu.com/aistudio/projectdetail/3875161)|
