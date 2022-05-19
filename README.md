@@ -29,7 +29,15 @@ BIT-CD: [Remote Sensing Image Change Detection with Transformers](https://arxiv.
 cd BIT-CD-Paddle/
 pip install -r requirements.txt
 ```
-需要安装 cuda10.2 + cudnn
+需要安装：
+```shell
+cuda10.2 + cudnn
+ ```
+或者
+```shell
+# 需要自己切换对应的paddlepaddle版本
+cuda11.2 + cudnn
+```
 
 ## 4.数据集
 目录结构：
@@ -42,23 +50,23 @@ pip install -r requirements.txt
     |   |   |-- A
     |   |   |-- B
     |   |   `-- label
-    |   `-- val
-    |       |-- A
-    |       |-- B
-    |       `-- label
-    |-- BIT-split
-    |   |-- test
-    |   |   |-- A
-    |   |   `-- B
-    |   |-- train
-    |   |   |-- A
-    |   |   |-- B
-    |   |   `-- label
-    |   |-- train.txt
     |   |-- val
     |   |   |-- A
     |   |   |-- B
     |   |   `-- label
+    |   `-- test
+    |       |-- A
+    |       `-- B
+    |-- BIT-split
+    |   |-- train
+    |   |   |-- A
+    |   |   |-- B
+    |   |   `-- label
+    |   |-- val
+    |   |   |-- A
+    |   |   |-- B
+    |   |   `-- label
+    |   |-- train.txt
     |   `-- val.txt
     `-- predicted
       
@@ -123,7 +131,7 @@ OrderedDict([('miou', 0.8980501731845956), ('category_iou', array([0.98892947, 0
 
 ### 模型预测
 本项目提供预测脚本`tutorials/predict/change_detection/bit_predict.py`，设置以下参数就可直接运行
-- weight 训练好的权重
+- weight_path 训练好的权重
 - A,B, 是T1影像路径,T2影像路径
 - pre 预测图片存储的位置
 
