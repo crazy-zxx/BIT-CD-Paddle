@@ -375,6 +375,11 @@ class Backbone(nn.Layer, KaimingInitMixin):
                 pretrained=pretrained,
                 strides=strides,
                 norm_layer=get_norm_layer())
+        elif arch == 'resnet101':
+            self.resnet = resnet.resnet101(
+                pretrained=pretrained,
+                strides=strides,
+                norm_layer=get_norm_layer())
         else:
             raise ValueError
 
